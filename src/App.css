@@ -1,0 +1,151 @@
+/* Google font import */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+body{
+  height: 100vh;
+}
+
+#root{
+  height: 100vh;
+}
+
+
+
+.chat-container {
+  font-family: 'Roboto', sans-serif;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 92vh; /* Full height */
+  
+  justify-content: flex-end;
+}
+
+/* Remove border and make container responsive */
+.chat-history {
+  height: 70%; /* 70% of the screen height */
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+/* Styling the chat message */
+.chat-message {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+  animation: lineAnimation 0.5s ease-out forwards;
+  white-space: pre-wrap;
+  opacity: 0;
+}
+
+/* Animation for line-by-line display */
+@keyframes lineAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Additional style for bot and user */
+.chat-message.bot {
+  background-color: #d1e7dd;
+}
+
+.chat-message.user {
+  background-color: #f8d7da;
+}
+
+/* Add highlight class for text that should be highlighted */
+.highlight {
+  color: red;
+  font-weight: bold;
+}
+
+/* Style for input fields */
+input[type="text"], input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+button:disabled {
+  background-color: #cccccc;
+}
+
+
+/* CSS Animation Enhancements */
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Updated chat-message animations */
+.chat-message.bot {
+  animation: slideInLeft 0.5s ease-out forwards; /* Bot messages slide in from the left */
+  background-color: #d1e7dd;
+}
+
+.chat-message.user {
+  animation: slideInRight 0.5s ease-out forwards; /* User messages slide in from the right */
+  background-color: #f8d7da;
+}
+
+.chat-history {
+  height: 70%; /* Chat area height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 10px;
+}
+
+
+.typing-animation {
+  display: inline-block;
+  overflow: hidden;
+  animation: typing 1s steps(5, end) infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 1.5em;
+  }
+}
+
