@@ -1,13 +1,12 @@
-import PhotoPreview from "../preview/PhotoPreview";
 import { MapPin, Phone, Mail, Globe } from "lucide-react";
 
-function Template_4({ resumeInfo }) {
+function Template_6({ resumeInfo }) {
     if (!resumeInfo?.personalDetails) {
         return null;
     }
 
     return (
-        <div style={{ width: "820px", position: "relative"}}>
+        <div style={{ width: "820px", position: "relative" }}>
             {/* Header */}
             <div
                 style={{
@@ -17,22 +16,18 @@ function Template_4({ resumeInfo }) {
                     position: "relative",
                     minHeight: "200px",
                     display: "flex",
+                    justifyContent: "center",
                     alignItems: "center",
+                    textAlign: "center"
                 }}
             >
-                {/* Left Column (Empty) */}
-                <div style={{ width: "35%" }}></div>
-
-                {/* Right Column (Name & Job Title) */}
-                <div style={{ width: "65%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                    <div style={{ textAlign: "left", width: "max-content" }}>
-                        <h1 style={{ fontSize: "40px", marginBottom: "5px", fontWeight: "bold", whiteSpace: "nowrap" }}>
-                            {resumeInfo?.personalDetails.firstName} {resumeInfo?.personalDetails.lastName}
-                        </h1>
-                        <h2 style={{ fontSize: "25px", fontWeight: "300", opacity: 0.9, whiteSpace: "nowrap" }}>
-                            {resumeInfo?.personalDetails.jobTitle}
-                        </h2>
-                    </div>
+                <div>
+                    <h1 style={{ fontSize: "40px", marginBottom: "5px", fontWeight: "bold", whiteSpace: "nowrap" }}>
+                        {resumeInfo?.personalDetails.firstName} {resumeInfo?.personalDetails.lastName}
+                    </h1>
+                    <h2 style={{ fontSize: "25px", fontWeight: "300", opacity: 0.9, whiteSpace: "nowrap" }}>
+                        {resumeInfo?.personalDetails.jobTitle}
+                    </h2>
                 </div>
             </div>
 
@@ -43,29 +38,10 @@ function Template_4({ resumeInfo }) {
                     style={{
                         width: "35%",
                         backgroundColor: "#f5f5f5",
-                        padding: "120px 20px 30px",
+                        padding: "40px 20px 30px",
                         position: "relative"
                     }}
                 >
-                    {resumeInfo?.resumePhoto && (
-                        <div
-                            style={{
-                                position: "absolute",
-                                left: "50%",
-                                transform: "translateX(-50%)",
-                                top: "-110px",
-                                width: "200px",
-                                height: "200px",
-                                borderRadius: "50%",
-                                overflow: "hidden",
-                                border: "4px solid white",
-                                boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
-                            }}
-                        >
-                            <PhotoPreview resumeInfo={resumeInfo.resumePhoto} />
-                        </div>
-                    )}
-
                     {/* Contact */}
                     <div style={{ marginBottom: "30px" }}>
                         <h2
@@ -377,7 +353,7 @@ function Template_4({ resumeInfo }) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Template_4;
+export default Template_6;

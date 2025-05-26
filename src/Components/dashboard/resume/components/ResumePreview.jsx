@@ -1,128 +1,96 @@
-import { ResumeInfoContext } from '../../context/ResumeInfoContext';
+// import { ResumeInfoContext } from '../../context/ResumeInfoContext';
+// import React, { useContext } from 'react';
+// import Template_3 from './Resume-Template/Template_3';
+// import Template_2 from './Resume-Template/Template_2';
+// import Template_5 from './Resume-Template/Template_5';
+// import Template_4 from './Resume-Template/Template_4';
+// import Template_1 from './Resume-Template/Template_1';
+
+// function ResumePreview() {
+//   const { resumeInfo } = useContext(ResumeInfoContext);
+//   const resumeImageID = resumeInfo?.resume?.resumeImageID; // Get the selected resume image ID
+
+//   if (!resumeInfo || !resumeInfo.personalDetails) {
+//     return <p>Loading or no resume data available.</p>;
+//   }
+
+//   // Render different styles based on resumeImageID
+//   if (resumeImageID === 1) {
+//     return (
+//         <Template_1 resumeInfo={resumeInfo} />
+//     );
+//   }
+//   else if (resumeImageID === 2) {
+//     return (
+//         <Template_2 resumeInfo={resumeInfo} />
+//     );
+//   } else if (resumeImageID === 3) {
+//     return (
+//         <Template_3 resumeInfo={resumeInfo} />
+//     );
+//   }
+//   else if (resumeImageID === 4) {
+//     return (
+//         <Template_4 resumeInfo={resumeInfo} />
+//     );
+//   }
+//   else if (resumeImageID === 5) {
+//     return (
+//         <Template_5 resumeInfo={resumeInfo} />
+//     );
+//   } else {
+//     // Default resume preview if no style is selected
+//     return (
+//       <div
+//         className="shadow-lg p-4"
+//         style={{
+//           height: '100%',
+//           borderColor: resumeInfo?.themeColor,
+//           border: '1px solid',
+//           fontFamily: 'Arial, sans-serif',
+//           userSelect: 'text',
+//         }}
+//       >
+//         {/* Default resume structure */}
+//         <Template_1 resumeInfo={resumeInfo} />
+//       </div>
+//     );
+//   }
+// }
+
+// export default ResumePreview;
+
+
 import React, { useContext } from 'react';
-import PersonalDetailPreview from './preview/PersonalDetailPreview';
-import ContactDetailPreview from './preview/ContactDetailPreview';
-import PhotoPreview from './preview/PhotoPreview';
-import SummeryPreview from './preview/SummeryPreview';
-import ExperiencePreview from './preview/ExperiencePreview';
-import EducationalPreview from './preview/EducationalPreview';
-import SkillsPreview from './preview/SkillsPreview';
-import ResumeCertificationPreview from './preview/CertificationPreview';
-import ResumeLanguagePreview from './preview/LanguagePreview';
-import ResumeProjectPreview from './preview/ProjectPreview';
-import Template_3 from './Resume-Template/Template_3';
+import { ResumeInfoContext } from '../../context/ResumeInfoContext';
+import Template_1 from './Resume-Template/Template_1';
 import Template_2 from './Resume-Template/Template_2';
-import Template_5 from './Resume-Template/Template_5';
+import Template_3 from './Resume-Template/Template_3';
 import Template_4 from './Resume-Template/Template_4';
+import Template_5 from './Resume-Template/Template_5';
+import Template_6 from './Resume-Template/Template_6';
 
-function ResumePreview() {
-  const { resumeInfo } = useContext(ResumeInfoContext);
-  const resumeImageID = resumeInfo?.resume?.resumeImageID; // Get the selected resume image ID
+function ResumePreview({ resumeInfo }) {
+    // If resumeInfo is not passed as a prop, get it from context
+    const context = useContext(ResumeInfoContext);
+    resumeInfo = resumeInfo || context.resumeInfo;
 
-  if (!resumeInfo || !resumeInfo.personalDetails) {
-    return <p>Loading or no resume data available.</p>;
-  }
+    const resumeImageID = resumeInfo?.resume?.resumeImageID;
 
-  // Render different styles based on resumeImageID
-  if (resumeImageID === 2) {
-    return (
-      <div>
-        <Template_2 resumeInfo={resumeInfo} />
-      </div>
-    );
-  } else if (resumeImageID === 3) {
-    return (
-      <div>
-        <Template_3 resumeInfo={resumeInfo} />
-      </div>
-    );
-  }
-  else if (resumeImageID === 4) {
-    return (
-      <div>
-        <Template_4 resumeInfo={resumeInfo} />
-      </div>
-    );
-  }
-  else if (resumeImageID === 5) {
-    return (
-      <div>
-        <Template_5 resumeInfo={resumeInfo} />
-      </div>
-    );
-  } else {
-    // Default resume preview if no style is selected
-    return (
-      <div
-        className="shadow-lg p-4"
-        style={{
-          height: '100%',
-          borderColor: resumeInfo?.themeColor,
-          border: '1px solid',
-          fontFamily: 'Arial, sans-serif',
-          userSelect: 'text',
-        }}
-      >
-        {/* Default resume structure */}
-        <DefaultResumeStructure resumeInfo={resumeInfo} />
-      </div>
-    );
-  }
+    if (!resumeInfo || !resumeInfo.personalDetails) {
+        return <p>Loading or no resume data available.</p>;
+    }
+
+    // Render the appropriate resume template
+    switch (resumeImageID) {
+        case 1: return <Template_1 resumeInfo={resumeInfo} />;
+        case 2: return <Template_2 resumeInfo={resumeInfo} />;
+        case 3: return <Template_3 resumeInfo={resumeInfo} />;
+        case 4: return <Template_4 resumeInfo={resumeInfo} />;
+        case 5: return <Template_5 resumeInfo={resumeInfo} />;
+        default:
+            return <Template_6 resumeInfo={resumeInfo} />;
+    }
 }
-
-// Extracted Default Resume Structure
-const DefaultResumeStructure = ({ resumeInfo }) => {
-  return (
-    <table id="resume-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
-      <colgroup>
-        <col style={{ width: '62%' }} />
-        <col style={{ width: '38%' }} />
-      </colgroup>
-      <thead>
-        <tr>
-          <th colSpan={2}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-              <div>
-                <PersonalDetailPreview resumeInfo={resumeInfo.personalDetails} />
-                <ContactDetailPreview resumeInfo={resumeInfo.personalDetails} />
-              </div>
-              <div style={{ height: '130px', width: '130px' }}>
-                <PhotoPreview resumeInfo={resumeInfo.resumePhoto} />
-              </div>
-
-            </div>
-            {resumeInfo?.resumeSummary?.summaryText && <SummeryPreview resumeInfo={resumeInfo} />}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style={{ verticalAlign: 'top' }}>
-            {resumeInfo?.resumeExperiences?.length > 0 && (
-              <ExperiencePreview resumeInfo={resumeInfo.resumeExperiences} />
-            )}
-            {resumeInfo?.resumeEducation?.length > 0 && (
-              <EducationalPreview resumeInfo={resumeInfo.resumeEducation} />
-            )}
-            {resumeInfo?.resumeProjects?.length > 0 && (
-              <ResumeProjectPreview resumeInfo={resumeInfo.resumeProjects} />
-            )}
-          </td>
-          <td style={{ verticalAlign: 'top' }}>
-            {resumeInfo?.resumeSkills?.length > 0 && (
-              <SkillsPreview resumeInfo={resumeInfo.resumeSkills} />
-            )}
-            {resumeInfo?.resumeCertifications?.length > 0 && (
-              <ResumeCertificationPreview resumeInfo={resumeInfo.resumeCertifications} />
-            )}
-            {resumeInfo?.resumeLanguages?.length > 0 && (
-              <ResumeLanguagePreview resumeInfo={resumeInfo.resumeLanguages} />
-            )}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  );
-};
 
 export default ResumePreview;

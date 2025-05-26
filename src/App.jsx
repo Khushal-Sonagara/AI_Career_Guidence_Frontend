@@ -9,6 +9,7 @@ import AuthHandler from './Components/Auth/AuthHandler';
 import EditResume from './Components/dashboard/resume/[resumeId]/edit/index';
 import ViewResume from './Components/my-resume/[resumeId]/view';
 import Dashboard from './Components/dashboard';
+import JobRolePredict from './Components/JobRolePredict/JobRolePredict';
 import { UserProvider } from './Components/Auth/UserContext';
 import { Toaster } from './Components/ui/sonner';
 import { ToastContainer } from "react-toastify";
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       { path: '/Resume/:id/edit', element: <EditResume /> },
       { path: '/my-resume/:id/view', element: <ViewResume /> },
       { path: '/my-resume/:id/download', element: <ViewResume /> },
+      { path: '/Job-Role-Predict', element: <JobRolePredict /> },
     ]
   },
   {

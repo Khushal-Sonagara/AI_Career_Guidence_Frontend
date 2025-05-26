@@ -5,6 +5,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ResumeDataService from '../../../../Services/ResumeDataService'
 
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 function ViewResume() {
     const [resumeInfo, setResumeInfo] = useState();
     const { id } = useParams();
@@ -13,7 +16,7 @@ function ViewResume() {
         GetResumeInfo();
     }, []);
 
-   
+
     const GetResumeInfo = async () => {
         try {
             const resp = await ResumeDataService.getByResumeId(id)
@@ -39,8 +42,62 @@ function ViewResume() {
         window.location.reload(); // Reload to restore events
     };
 
+    // const handleDownload = async () => {
+    //     const printArea = document.getElementById('print-area');
 
+    //     if (!printArea) {
+    //         console.error("Print area not found");
+    //         return;
+    //     }
 
+    //     const pdf = new jsPDF({
+    //         orientation: "portrait",
+    //         unit: "px", // Use pixels for more precision
+    //         format: [794, 1123] // A4 size in pixels at 96 DPI (width x height)
+    //     });
+
+    //     await pdf.html(printArea, {
+    //         callback: (pdf) => {
+    //             pdf.save("Resume.pdf");
+    //         },
+    //         margin: 0, // Remove extra padding
+    //         x: 0,
+    //         y: 0,
+    //         width: 794, // Full width in px (A4)
+    //         windowWidth: 794 // Ensure it scales properly
+    //     });
+    // };
+    // const handleDownload = async () => {
+    //     const printArea = document.getElementById('print-area');
+    
+    //     if (!printArea) {
+    //         console.error("Print area not found");
+    //         return;
+    //     }
+    
+    //     const pdf = new jsPDF({
+    //         orientation: "portrait",
+    //         unit: "px",
+    //         format: [794, 1123] ,
+    //     });
+    
+    //     await pdf.html(printArea, {
+    //         callback: (pdf) => {
+    //             pdf.save("Resume.pdf");
+    //         },
+    //         margin: 0, // Adjust margin to ensure proper formatting
+    //         x: 0,
+    //         y: 0,
+    //         width: 794, // A4 width in mm
+    //         windowWidth: printArea.scrollWidth, // Ensure full width capture
+    //         html2canvas: {
+    //             scale: 1, // Use 1 to keep text selectable
+    //             useCORS: true,
+    //         }
+    //     });
+    // };
+    
+    
 
     const handleShare = async () => {
         const baseUrl = import.meta.env.VITE_BASE_URL || window.location.origin; // Use window.location.origin as fallback
@@ -80,9 +137,9 @@ function ViewResume() {
                     </div>
                 </div>
             </div>
-            <div style={{ margin: '40px 10%' }}>
+            <div style={{ margin: '40px 10%', justifyContent: 'center' }}>
                 <div id="print-area">
-                    <ResumePreview />
+                    <ResumePreview resumeInfo={resumeInfo}/>
                 </div>
             </div>
         </ResumeInfoContext.Provider>
@@ -90,3 +147,4 @@ function ViewResume() {
 }
 
 export default ViewResume;
+

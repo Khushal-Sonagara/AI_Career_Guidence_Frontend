@@ -1,0 +1,27 @@
+/* @media print {
+    body * {
+        visibility: hidden;
+    }
+    #print-area, #print-area * {
+        visibility: visible;
+    }
+    #print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+} */
+#print-area{
+    width: 820px;
+}
+
+/* 
+#print-area {
+    background-color: #163853 !important;
+    color: white !important; 
+  }
+
+  #print-area td {
+    background-color: inherit !important; 
+  } */

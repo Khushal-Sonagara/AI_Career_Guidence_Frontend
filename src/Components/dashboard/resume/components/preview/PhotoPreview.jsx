@@ -1,5 +1,5 @@
 import React from 'react';
-import ph from '../../../../../assets/passportphoto.jpg';
+// import ph from '../../../../../assets/passportphoto.jpg';
 
 function PhotoPreview({ resumeInfo }) {
   return (
