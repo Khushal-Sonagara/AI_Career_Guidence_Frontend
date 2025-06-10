@@ -20,7 +20,6 @@ function Dashboard() {
     if (userData) {
       UserResumesService.getByUserId(userData.userID)
         .then((resp) => {
-          Console.log(userData)
           setResumeList(resp);
         })
         .catch((error) => {
