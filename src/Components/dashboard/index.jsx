@@ -20,6 +20,7 @@ function Dashboard() {
     if (userData) {
       UserResumesService.getByUserId(userData.userID)
         .then((resp) => {
+          Console.log(userData)
           setResumeList(resp);
         })
         .catch((error) => {
@@ -33,22 +34,21 @@ function Dashboard() {
       <h2 className='fw-bold fs-3'>My Resume</h2>
       <p>Start Creating AI resume for your next Job role</p>
       <div className='row g-3 mt-3'>
-      <AddResume refreshData={GetResumesList} />
+        <AddResume refreshData={GetResumesList} />
         {resumeList.length > 0
           ? resumeList.map((resume) => (
-              <div className='col-6 col-sm-4 col-md-3 col-lg-4' key={resume.resumeID}>
-                <ResumeCardItem resume={resume} refreshData={GetResumesList} />
-              </div>
-            ))
+            <div className='col-6 col-sm-4 col-md-3 col-lg-4' key={resume.resumeID}>
+              <ResumeCardItem resume={resume} refreshData={GetResumesList} />
+            </div>
+          ))
           : Array(5).fill(0).map((_, index) => (
-              <div className='col-6 col-sm-4 col-md-3 col-lg-2' key={index}>
-                <div className='rounded bg-secondary' style={{ height: '200px' }}></div>
-              </div>
-            ))}
+            <div className='col-6 col-sm-4 col-md-3 col-lg-2' key={index}>
+              <div className='rounded bg-secondary' style={{ height: '200px' }}></div>
+            </div>
+          ))}
       </div>
     </div>
   );
 }
 
 export default Dashboard;
-  
